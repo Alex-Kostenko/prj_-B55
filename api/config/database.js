@@ -10,10 +10,10 @@ router.get("/", (req, res, next) => res.send(databaseConnection));
 //      atlas
 // const DB_URL = 'mongodb+srv://admin:admin@cluster0-xq4gy.mongodb.net/main?retryWrites=true&w=majority'
 //      docker
-const DB_URL = "mongodb://localhost/users";
+const DB_URL = "mongodb_db://localhost/users";
 
 const options = {
-  connectTimeoutMS: 10000,
+  connectTimeoutMS: 2000,
   reconnectInterval: 500,
   reconnectTries: Number.MAX_VALUE,
   useCreateIndex: true,
@@ -23,10 +23,11 @@ const options = {
 
 mongoose
   .connect(DB_URL, options)
-  .then(function() {
+
+  .then(function () {
     console.log("MongoDB is connected");
   })
-  .catch(function(err) {
+  .catch(function (err) {
     console.log(err);
   });
 
