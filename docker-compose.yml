@@ -4,7 +4,7 @@ services:
         image: mongo
         restart: always
 
-        container_name: mongodb
+        container_name: mongodb_db
 
         volumes:
             - ./dbdata:/data/db
