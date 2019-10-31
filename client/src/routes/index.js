@@ -17,6 +17,9 @@ export default function routes() {
           <Route path="/">
             <HomePage />
           </Route>
+          <Route path="/registration">
+            <HomePage />
+          </Route>
 
         </Switch>
       </Router>

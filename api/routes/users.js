@@ -1,22 +1,3 @@
-// var express = require('express');
-// var router = express.Router();
-
-// /* GET users listing. */
-// router.get('/', function(req, res, next) {
-//   res.send('respond with a resource');
-// });
-
-// router.get('/register', function(req, res, next) {
-//   res.send('respond with a resource');
-// });
-
-// router.get('/login', function(req, res, next) {
-//   res.send('respond with a resource');
-// });
-
-
-// module.exports = router;
-
 require("dotenv").config();
 var express = require("express");
 var router = express.Router();
@@ -34,17 +15,20 @@ router.post("/register", function (req, res) {
   } else {
     var newUser = new UserShema({
       username: req.body.username,
-      password: req.body.password
+      password: req.body.password,
+      email: req.body.email,
+      age: req.body.age,
+      gender: req.body.gender,
+      searchGender: req.body.searchGender,
     });
+
     // save the user
     User.createUser(newUser, function (err, user) {
-      console.log(err);
-      
+      console.log(newUser);
+
       if (err) {
-        console.log(err);
         res.status(400).send("Unable to save User to database");
       } else {
-        console.log(user);
         res.send(user).end();
       }
     });
@@ -53,6 +37,7 @@ router.post("/register", function (req, res) {
 
 // login
 router.post("/login", passport.authenticate("local"), function (req, res) {
+  console.log(req.user);
   res.send(req.user);
 });
 

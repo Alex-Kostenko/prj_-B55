@@ -1,8 +1,10 @@
 import React from 'react';
-
+import axios from "axios";
 import { Form, Input, Button, Checkbox } from 'antd';
 
 import './style.css';
+
+const authAxios = axios.create();
 
 const LoginForm = ({ form }) => {
   const { getFieldDecorator, validateFields } = form;
@@ -13,6 +15,12 @@ const LoginForm = ({ form }) => {
     validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        authAxios.post('http://localhost:9000/auth/login', values)
+          .then(function (response) {
+            return response;
+          }).then(function (body) {
+            console.log(body);
+          });
       }
     });
   };
@@ -20,7 +28,7 @@ const LoginForm = ({ form }) => {
   return (
     <Form onSubmit={onHandleSubmit} className="login-form">
       <Form.Item>
-        {getFieldDecorator('email', {
+        {getFieldDecorator('username', {
           rules: [{ required: true, message: 'Please enter your Email address' }],
         })(
           <Input
@@ -57,7 +65,7 @@ const LoginForm = ({ form }) => {
       </Form.Item>
 
       <Form.Item>
-        Not a member? <a href="/">Join Free Now!</a>
+        Not a member? <a href="/registration">Join Free Now!</a>
       </Form.Item>
 
     </Form>
