@@ -9,8 +9,9 @@ var passport = require("passport");
 
 // register
 router.post("/register", function (req, res) {
+  const checkReq = !req.body.username || !req.body.password || !req.body.email || !req.body.age
 
-  if (!req.body.username || !req.body.password) {
+  if ( checkReq ) {
     res.json({ success: false, msg: "Please pass username and password." });
   } else {
     var newUser = new UserShema({
@@ -27,7 +28,7 @@ router.post("/register", function (req, res) {
       console.log(newUser);
 
       if (err) {
-        res.status(400).send("Unable to save User to database");
+        res.status(400).send(err);
       } else {
         res.send(user).end();
       }
@@ -37,7 +38,6 @@ router.post("/register", function (req, res) {
 
 // login
 router.post("/login", passport.authenticate("local"), function (req, res) {
-  console.log(req.user);
   res.send(req.user);
 });
 

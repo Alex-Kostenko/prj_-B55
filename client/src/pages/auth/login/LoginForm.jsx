@@ -28,7 +28,7 @@ const LoginForm = ({ form }) => {
   return (
     <Form onSubmit={onHandleSubmit} className="login-form">
       <Form.Item>
-        {getFieldDecorator('username', {
+        {getFieldDecorator('email', {
           rules: [{ required: true, message: 'Please enter your Email address' }],
         })(
           <Input
@@ -44,8 +44,8 @@ const LoginForm = ({ form }) => {
           <Input
             type="password"
             placeholder="Password"
-          />,
-        )}
+      />,
+    )}
       </Form.Item>
 
       <Form.Item>

@@ -33,8 +33,9 @@ const RegisterForm = ({ register, form }) => {
           rules: [{ required: true, message: 'Please enter username' }],
         })(
           <Input
+            type="text"
             placeholder="Username"
-          />,
+          />
         )}
       </Form.Item>
 
@@ -45,7 +46,8 @@ const RegisterForm = ({ register, form }) => {
           <Input
             type="password"
             placeholder="Password"
-          />,
+            minLength="9"
+          />
         )}
       </Form.Item>
 
@@ -56,7 +58,7 @@ const RegisterForm = ({ register, form }) => {
           <Input
             type="email"
             placeholder="email"
-          />,
+          />
         )}
       </Form.Item>
 
@@ -67,24 +69,24 @@ const RegisterForm = ({ register, form }) => {
           <Input
             type="number"
             placeholder="age"
-          />,
+          />
         )}
       </Form.Item>
 
       <Form.Item>
         {getFieldDecorator('gender', {
-          rules: [{ required: true, message: 'Please Enter Your Age' }],
+          rules: [{ required: false, message: 'Please Enter Your Age' }],
         })(
           <Radio.Group buttonStyle="solid">
             <Radio.Button value="1">Man</Radio.Button>
             <Radio.Button value="0">Female</Radio.Button>
-          </Radio.Group>,
+          </Radio.Group>
         )}
       </Form.Item>
 
       <Form.Item>
         {getFieldDecorator('searchGender', {
-          rules: [{ required: true, message: 'Please Enter Your Age' }],
+          rules: [{ required: false, message: 'Please Enter Your Age' }],
         })(
           <Radio.Group buttonStyle="solid">
             <Radio.Button value="1">Man</Radio.Button>
