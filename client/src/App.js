@@ -17,17 +17,19 @@ export default function routes() {
     // <ErrorBoundary>
     <Router>
       <div>
-        <ul>
-          <li>
-            <Link to="/"> LoginPage </Link>
-          </li>
-          <li>
-            <Link to="/registration"> RegisterPage </Link>
-          </li>
-          <li>
-            <Link to="/user"> User </Link>
-          </li>
-        </ul>
+        <nav>
+          <ul class="navigation">
+            <li>
+              <Link to="/"> LoginPage </Link>
+            </li>
+            <li>
+              <Link to="/registration"> RegisterPage </Link>
+            </li>
+            <li>
+              <Link to="/user"> User </Link>
+            </li>
+          </ul>
+        </nav>
 
         <hr />
 

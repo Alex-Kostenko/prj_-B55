@@ -1,1 +1,8 @@
 @import '../node_modules/antd/dist/antd.css';
+
+.navigation {
+  display: flex;
+  justify-content: space-around;
+  padding-left: 0px;
+  margin-top: 10px;
+}
