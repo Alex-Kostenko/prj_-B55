@@ -3,31 +3,51 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Link
 } from "react-router-dom";
 
+// import ErrorBoundary from './components/ErrorBoundary';
+
 import HomePage from '../pages/home';
+import RegisterPage from '../pages/auth/register';
 import RenderUser from '../pages/user';
 
-export default function routes() {
+const RoutesPage = () => {
   return (
     // <ErrorBoundary>
-      <Router>
+    <Router>
+      <div>
+        <nav>
+          <ul class="navigation">
+            <li>
+              <Link to="/"> LoginPage </Link>
+            </li>
+            <li>
+              <Link to="/registration"> RegisterPage </Link>
+            </li>
+            <li>
+              <Link to="/user"> User </Link>
+            </li>
+          </ul>
+        </nav>
+
+        <hr />
+
         <Switch>
-
-          <Route path="/">
+          <Route exact path="/">
             <HomePage />
           </Route>
-
           <Route path="/registration">
-            <HomePage />
+            <RegisterPage />
           </Route>
-
           <Route path="/user">
             <RenderUser />
           </Route>
-
         </Switch>
-      </Router>
+      </div>
+    </Router>
     // </ErrorBoundary>
   );
 };
+
+export default RoutesPage;
