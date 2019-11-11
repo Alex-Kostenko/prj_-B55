@@ -1,38 +1,58 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
+import { Redirect } from "react-router"; 
 import { Form, Input, Button, Checkbox } from 'antd';
 
 import './style.css';
 
 const authAxios = axios.create();
 
-const LoginForm = ({ form }) => {
-  const { getFieldDecorator, validateFields } = form;
+const LoginForm = ( props ) => {
+  const { getFieldDecorator, validateFields } = props.form;
+
+  useEffect(() => {
+    authAxios.get('http://localhost:9000/auth/logout')
+      .then(function (res) {
+        console.log(res);
+      })
+
+    localStorage.removeItem('currentUser');
+    sessionStorage.removeItem('currentUser');
+  }, []);
+
+  const [redirect, setRedirect] = useState(false);
 
   const onHandleSubmit = event => {
     event.preventDefault();
 
     validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
         authAxios.post('http://localhost:9000/auth/login', values)
           .then(function (response) {
             return response;
           }).then(function (body) {
-            console.log(body);
+            const remember = JSON.parse(body.config.data).remember
+
+            if (remember) {
+              window.localStorage.setItem('currentUser', JSON.stringify(body));
+            } else {
+              window.sessionStorage.setItem('currentUser', JSON.stringify(body));
+            }
+            setRedirect(true)
           });
       }
     });
   };
 
   return (
+    redirect ? <Redirect to='/user' /> : 
     <Form onSubmit={onHandleSubmit} className="login-form">
       <Form.Item>
-        {getFieldDecorator('email', {
+        {getFieldDecorator('username', {
           rules: [{ required: true, message: 'Please enter your Email address' }],
         })(
           <Input
-            placeholder="Email"
+            placeholder="UserName"
           />,
         )}
       </Form.Item>

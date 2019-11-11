@@ -10,6 +10,7 @@ import {
 
 import HomePage from './pages/home';
 import RegisterPage from './pages/auth/register';
+import RenderUser from './pages/user';
 
 export default function routes() {
   return (
@@ -18,10 +19,13 @@ export default function routes() {
       <div>
         <ul>
           <li>
-            <Link to="/">LoginPage</Link>
+            <Link to="/"> LoginPage </Link>
           </li>
           <li>
-            <Link to="/registration">RegisterPage</Link>
+            <Link to="/registration"> RegisterPage </Link>
+          </li>
+          <li>
+            <Link to="/user"> User </Link>
           </li>
         </ul>
 
@@ -33,6 +37,9 @@ export default function routes() {
           </Route>
           <Route path="/registration">
             <RegisterPage />
+          </Route>
+          <Route path="/user">
+            <RenderUser />
           </Route>
         </Switch>
       </div>

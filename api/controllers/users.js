@@ -16,9 +16,15 @@ module.exports.getUserByUsername = function(username, callback){
   User.findOne(query, callback);
 };
 
+module.exports.editUser = function(id, callback){
+  User.findOneAndUpdate({ _id: id }, { $set: callback }, { upsert: true }, function (err, doc) {
+    if (err) { throw err; }
+    else { console.log("Updated"); }
+  });
+};
+
 module.exports.getUserByEmail = function(email, callback){
   console.log('mail');
-  
   var query = {email: email};
   User.findOne(query, callback);
 };

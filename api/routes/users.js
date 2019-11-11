@@ -40,6 +40,12 @@ router.post("/register", function (req, res) {
 router.post("/login", passport.authenticate("local"), function (req, res) {
   res.send(req.user);
 });
+// editUser
+router.post("/editUser/:userId", function (req, res) {
+  const id = req.params.userId;
+  User.editUser(id, req.body);
+  res.send(req.body);
+});
 
 // Endpoint to get current user
 router.get('/user', function (req, res) {

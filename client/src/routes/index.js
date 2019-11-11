@@ -4,9 +4,9 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-// import ErrorBoundary from './components/ErrorBoundary';
 
 import HomePage from '../pages/home';
+import RenderUser from '../pages/user';
 
 export default function routes() {
   return (
@@ -17,8 +17,13 @@ export default function routes() {
           <Route path="/">
             <HomePage />
           </Route>
+
           <Route path="/registration">
             <HomePage />
+          </Route>
+
+          <Route path="/user">
+            <RenderUser />
           </Route>
 
         </Switch>
