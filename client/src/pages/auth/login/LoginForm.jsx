@@ -11,6 +11,8 @@ const { Title } = Typography;
 const LoginForm = ( props ) => {
   const { getFieldDecorator, validateFields } = props.form;
 
+  const [redirect, setRedirect] = useState(false);
+
   useEffect(() => {
     authAxios.get('http://localhost:9000/auth/logout')
       .then(function (res) {
@@ -20,8 +22,6 @@ const LoginForm = ( props ) => {
     localStorage.removeItem('currentUser');
     sessionStorage.removeItem('currentUser');
   }, []);
-
-  const [redirect, setRedirect] = useState(false);
 
   const onHandleSubmit = event => {
     event.preventDefault();
@@ -67,8 +67,8 @@ const LoginForm = ( props ) => {
             <Input
               type="password"
               placeholder="Password"
-        />,
-      )}
+            />,
+          )}
         </Form.Item>
 
         <Form.Item>
