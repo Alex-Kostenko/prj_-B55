@@ -11,6 +11,7 @@ import {
 import HomePage from '../pages/home';
 import RegisterPage from '../pages/auth/register';
 import RenderUser from '../pages/user';
+import UserInfo from '../pages/user/userInfo';
 
 const RoutesPage = () => {
   return (
@@ -18,7 +19,7 @@ const RoutesPage = () => {
     <Router>
       <div>
         <nav>
-          <ul class="navigation">
+          <ul className="navigation">
             <li>
               <Link to="/"> LoginPage </Link>
             </li>
@@ -27,6 +28,9 @@ const RoutesPage = () => {
             </li>
             <li>
               <Link to="/user"> User </Link>
+            </li>
+            <li>
+              <Link to="/userInfo"> UserInfo </Link>
             </li>
           </ul>
         </nav>
@@ -42,6 +46,9 @@ const RoutesPage = () => {
           </Route>
           <Route path="/user">
             <RenderUser />
+          </Route>
+          <Route path="/userInfo">
+            <UserInfo />
           </Route>
         </Switch>
       </div>
