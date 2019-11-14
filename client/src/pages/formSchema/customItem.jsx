@@ -6,16 +6,16 @@ const moment = require('moment');
 export const CustomSelect = (props) => {
   console.log("select", props);
 
-  const { schema, label, onChange, id } = props;
+  const { schema, label, onChange, id, value } = props;
   const date = schema.enum;
   const dateTitle = schema.enumNames;
 
   return (
     <label>
       {label}
-      <select name={label} id={id} onChange={(event) => onChange(event.target.value)}>
+      <select name={label} id={id} onChange={(event) => onChange(event.target.value)} value={value}>
         {date.map((item, i) =>
-          <option value={item} key={item}> 
+          <option value={item} key={item} > 
             {dateTitle[i]}
           </option>
         )}
@@ -25,8 +25,8 @@ export const CustomSelect = (props) => {
 }
 
 export const CustomInput = (props) => {
-  console.log("input", props);
-  const { label, onChange, id } = props;
+  // console.log("input", props);
+  const { label, onChange, id, value } = props;
 
   return (
     <label>
@@ -36,6 +36,7 @@ export const CustomInput = (props) => {
         name={label}
         onChange={(event) => onChange(event.target.value)}
         id={id}
+        value={value}
       />
     </label>
   );
@@ -45,10 +46,11 @@ export const CustomMultiCheckBox = (props) => {
 
   const [allValue, setValue] = useState({})
 
-  console.log("multiCheckBox", props);
+  // console.log("multiCheckBox", props);
   const { schema, label, onChange, id } = props;
   const date = schema.enum;
   const dateTitle = schema.enumNames;
+  const value = props.value;
 
   const handleChecked = (event) => {
     const mainObj = {...allValue}
@@ -70,6 +72,7 @@ export const CustomMultiCheckBox = (props) => {
             <input
               type="checkbox" 
               value={item} 
+              checked={value[i] ? true : false }
               onChange={handleChecked}
             />
             { dateTitle[i] }
@@ -80,7 +83,7 @@ export const CustomMultiCheckBox = (props) => {
 }
 
 export const CustomRadioBtn = (props) => {
-  console.log("radioBtn", props);
+  // console.log("radioBtn", props);
   const { schema, label, onChange, id } = props;
   const date = schema.enum;
   const dateTitle = schema.enumNames;
@@ -95,6 +98,7 @@ export const CustomRadioBtn = (props) => {
             type="radio"
             name={ id }
             value={ item }
+            checked={String(item) === String(props.value)}
             onChange={(event) => onChange(event.target.value)}
           />
           {dateTitle[i]}
@@ -104,51 +108,73 @@ export const CustomRadioBtn = (props) => {
   );
 }
 
-export const CustomDateYearMonth = (props) => {
-  console.log("customDateYearMonth", props);
-  moment.locale('ru');
-  const month = moment.months();
-  const { options, label, onChange, id, schema } = props;
-  const yearRange = options.yearsRange;
-  const description = schema.description || null;
+export const CustomDateYear = (props) => {
 
-  const [date, setDate] = useState([]);
+  const { options,  onChange, id, value } = props;
 
-  const handleChange = (value, name) => {
-    const mainObj = { ...date }
+  let yearList = []
 
-    mainObj[name] = value;
-
-    setDate(date[name] = mainObj)
-    onChange(date[name] = mainObj)
-  }
-
-  const RenderYearList = () => {
-    let yearList = []
+  if (options) {
+    const yearRange = options.dateRange;
 
     for (let i = yearRange[0]; i <= yearRange[1]; i++) {
       yearList.push(i)
     }
-
-    return (
-      <select name="id" onChange={(e)=>handleChange(e.target.value, 'year')}>
-        {yearList.map((item, i) =>
-          <option value={item} key={i}> {item} </option>
-        )}
-      </select>
-    );
   }
 
   return (
-    <div id={id}>
+    <select name={id} onChange={(e) => onChange(e.target.value)} value={value}>
+      <option value="defaultYear" disabled defaultValue > Year </option>
+      {yearList.length && yearList.map((item, i) =>
+        <option value={item} key={i}> {item} </option>
+      )}
+    </select>
+  );
+}
+
+export const CustomDateMonth = (props) => {
+
+  const { options,  onChange, id, value } = props;
+
+  moment.locale('ru');
+  const month = moment.months();
+
+  return (
+    <select name={id} onChange={(e) => onChange(e.target.value)} value={value}>
+      <option value="defaultMonth" disabled defaultValue > Month </option>
+      {month.map((item, i) =>
+        <option value={i+1} key={i}> {item} </option>
+      )}
+    </select>
+  );
+}
+
+export const CustomTextArea = (props) => {
+  // console.log("textArea", props);
+  const { label, onChange, id, value } = props;
+
+  return (
+    <label>
       {label}
-      <select name="id" onChange={(e) => handleChange(e.target.value, 'month')}>
-        {month.map(( item, i ) =>
-          <option value={i-1} key={i}> {item} </option>
-        )}
-      </select>
-      <RenderYearList />
-      <div> {description} </div>
-    </div>
+      <textarea
+        type="text"
+        name={label}
+        onChange={(event) => onChange(event.target.value)}
+        id={id}
+        value={value}
+      />
+    </label>
+  );
+}
+
+export const CustomCheckBox = (props) => {
+  console.log(props);
+  const { onChange, id, label, value } = props
+
+  return(
+    <>
+      <input id={id} type="checkbox" name={id} checked={value} onChange={(e) => onChange(e.target.checked)}/>
+      {label}
+    </>
   );
 }

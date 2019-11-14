@@ -3,7 +3,10 @@ import {
   CustomInput,
   CustomMultiCheckBox,
   CustomRadioBtn,
-  CustomDateYearMonth
+  CustomDateYear,
+  CustomDateMonth,
+  CustomTextArea,
+  CustomCheckBox
  } from "../formSchema/customItem";
 
 const widgets = {
@@ -11,7 +14,10 @@ const widgets = {
   CustomInput: CustomInput,
   CustomMultiCheckBox: CustomMultiCheckBox,
   CustomRadioBtn: CustomRadioBtn,
-  CustomDateYearMonth: CustomDateYearMonth
+  CustomDateYear: CustomDateYear,
+  CustomTextArea: CustomTextArea,
+  CustomDateMonth: CustomDateMonth,
+  CustomCheckBox: CustomCheckBox
 };
 
 export default widgets;
