@@ -193,7 +193,7 @@ export const CustomTextArea = (props) => {
       {label}
       <TextArea
         name={label}
-        onChange={(v) => onChange(v)}
+        onChange={(e) => onChange(e.target.value)}
         id={id}
         value={value}
       />
