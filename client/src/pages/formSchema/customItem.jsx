@@ -1,52 +1,88 @@
 import React, {useState} from 'react';
+import { 
+  Select, 
+  Input, 
+  Checkbox, 
+  Radio
+} from 'antd';
 import 'moment/locale/ru';
-
+const { Option } = Select;
+const { TextArea } = Input;
 const moment = require('moment');
 
+
 export const CustomSelect = (props) => {
-  console.log("select", props);
+  // console.log("select", props);
 
   const { schema, label, onChange, id, value } = props;
   const date = schema.enum;
   const dateTitle = schema.enumNames;
 
   return (
-    <label>
-      {label}
-      <select name={label} id={id} onChange={(event) => onChange(event.target.value)} value={value}>
+    <label className="form__itemWrap df">
+      <div className="fb30">{label}</div>
+      <Select name={label} id={id} onChange={(value) => onChange(value)} value={value} className="fb70">
         {date.map((item, i) =>
-          <option value={item} key={item} > 
+          <Option value={item} key={item} > 
             {dateTitle[i]}
-          </option>
+          </Option>
         )}
-      </select>
+      </Select>
     </label> 
   );
-}
+} //done
+
+export const FormTitle = (props) => {
+  // console.log("Input", props);
+  const { label, schema } = props;
+  const { description } = schema;
+
+  return (
+    <div>
+      <h2 className="form__title form__itemWrap">
+        {label}
+      </h2>
+      <h4 className="form__desc form__itemWrap">
+        {description}
+      </h4>
+    </div>
+  );
+} //done
+
+export const SubTitle = (props) => {
+  // console.log("Input", props);
+  const { label } = props;
+
+  return (
+    <h3 className="form__itemWrap form__title">
+      {label}
+    </h3>
+  );
+} 
 
 export const CustomInput = (props) => {
-  // console.log("input", props);
+  // console.log("Input", props);
   const { label, onChange, id, value } = props;
 
   return (
-    <label>
-      {label}
-      <input
+    <label className="form__itemWrap df">
+      <div className="fb30"> {label} </div>
+      <Input
         type="text"
         name={label}
         onChange={(event) => onChange(event.target.value)}
         id={id}
         value={value}
+        className="fb70"
       />
     </label>
   );
-}
+} //done
 
 export const CustomMultiCheckBox = (props) => {
 
   const [allValue, setValue] = useState({})
 
-  // console.log("multiCheckBox", props);
   const { schema, label, onChange, id } = props;
   const date = schema.enum;
   const dateTitle = schema.enumNames;
@@ -64,12 +100,12 @@ export const CustomMultiCheckBox = (props) => {
   }
 
   return (
-    <div id={id}>
+    <div id={id} className="form__itemWrap">
       {label}
         {date.map((item, i) =>
           <label key={item} >
             <br />
-            <input
+            <Input
               type="checkbox" 
               value={item} 
               checked={value[i] ? true : false }
@@ -89,20 +125,19 @@ export const CustomRadioBtn = (props) => {
   const dateTitle = schema.enumNames;
 
   return (
-    <div id={id}>
+    <div id={id} className="form__itemWrap">
       {label}
       {date.map((item, i) =>
-        <label key={item} >
-          <br />
-          <input
-            type="radio"
+        <div key={item} >
+          <Radio
             name={ id }
             value={ item }
             checked={String(item) === String(props.value)}
             onChange={(event) => onChange(event.target.value)}
-          />
+          >
           {dateTitle[i]}
-        </label>
+          </Radio>
+        </div>
       )}
     </div>
   );
@@ -110,7 +145,7 @@ export const CustomRadioBtn = (props) => {
 
 export const CustomDateYear = (props) => {
 
-  const { options,  onChange, id, value } = props;
+  const { options, onChange, id, value } = props;
 
   let yearList = []
 
@@ -123,43 +158,42 @@ export const CustomDateYear = (props) => {
   }
 
   return (
-    <select name={id} onChange={(e) => onChange(e.target.value)} value={value}>
-      <option value="defaultYear" disabled defaultValue > Year </option>
+    <Select name={id} onChange={(value) => onChange(value)} value={value}>
+      <Option value="defaultYear" disabled defaultValue > Year </Option>
       {yearList.length && yearList.map((item, i) =>
-        <option value={item} key={i}> {item} </option>
+        <Option value={item} key={i}> {item} </Option>
       )}
-    </select>
+    </Select>
   );
-}
+} 
 
 export const CustomDateMonth = (props) => {
 
-  const { options,  onChange, id, value } = props;
+  const { onChange, id, value } = props;
 
   moment.locale('ru');
   const month = moment.months();
 
   return (
-    <select name={id} onChange={(e) => onChange(e.target.value)} value={value}>
-      <option value="defaultMonth" disabled defaultValue > Month </option>
+    <Select name={id} onChange={(value) => onChange(value)} value={value} >
+      <Option value="defaultMonth" disabled defaultValue > Month </Option>
       {month.map((item, i) =>
-        <option value={i+1} key={i}> {item} </option>
+        <Option value={i+1} key={i}> {item} </Option>
       )}
-    </select>
+    </Select>
   );
-}
+} 
 
 export const CustomTextArea = (props) => {
   // console.log("textArea", props);
   const { label, onChange, id, value } = props;
 
   return (
-    <label>
+    <label className="form__itemWrap">
       {label}
-      <textarea
-        type="text"
+      <TextArea
         name={label}
-        onChange={(event) => onChange(event.target.value)}
+        onChange={(v) => onChange(v)}
         id={id}
         value={value}
       />
@@ -168,13 +202,19 @@ export const CustomTextArea = (props) => {
 }
 
 export const CustomCheckBox = (props) => {
-  console.log(props);
+  // console.log(props);
   const { onChange, id, label, value } = props
 
   return(
-    <>
-      <input id={id} type="checkbox" name={id} checked={value} onChange={(e) => onChange(e.target.checked)}/>
-      {label}
-    </>
+    <div>
+      <Checkbox 
+        id={id}  
+        name={id} 
+        checked={value} 
+        onChange={(e) => onChange(e.target.checked)}
+      >
+        {label}
+      </Checkbox>
+    </div>
   );
 }

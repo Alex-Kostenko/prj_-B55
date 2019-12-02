@@ -1,8 +1,25 @@
 @import '../node_modules/antd/dist/antd.css';
+@import './styles/form.css';
 
 .navigation {
   display: flex;
   justify-content: space-around;
   padding-left: 0px;
   margin-top: 10px;
+}
+
+.df {
+  display: flex;
+}
+
+.fb30 {
+  flex-basis: 30%;
+}
+
+.fb70 {
+  flex-basis: 70%;
+}
+
+.m15 {
+  margin: 15px;
 }

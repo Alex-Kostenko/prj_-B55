@@ -6,7 +6,9 @@ import {
   CustomDateYear,
   CustomDateMonth,
   CustomTextArea,
-  CustomCheckBox
+  CustomCheckBox,
+  SubTitle,
+  FormTitle
  } from "../formSchema/customItem";
 
 const widgets = {
@@ -17,7 +19,10 @@ const widgets = {
   CustomDateYear: CustomDateYear,
   CustomTextArea: CustomTextArea,
   CustomDateMonth: CustomDateMonth,
-  CustomCheckBox: CustomCheckBox
+  CustomCheckBox: CustomCheckBox,
+  SubTitle: SubTitle,
+  FormTitle: FormTitle
+
 };
 
 export default widgets;

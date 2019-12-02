@@ -1,11 +1,20 @@
 const schema = {
-  title: "Todo",
+  title: "",
   type: "object",
   required: ['name'],
   properties: {
+    'formTitle': { //formTitle
+      type: "string",
+      title: "Редактировать профиль",
+      description: "Ответы на эти вопросы профиля помогут другим пользователям найти вас в результатах поиска и помогут нам найти для вас более точные соответствия. Ответьте на все вопросы ниже для завершения этого шага.",
+    },
+    'subTitle-mainData': { //subtitle
+      type: "string",
+      title: "Основные сведения о вас:",
+    },
     'name': { //input text
       type: "string",
-      title: "Имя",
+      title: "Имя:",
     },
     'gender': { //select
       type: "number",
@@ -39,17 +48,6 @@ const schema = {
       enum: ["ukr", "mol", "rus"],
       enumNames: ["Украина", "Молдова", "Россия"]
     },
-    // "checkboxs": { //ckeckboxs
-    //   type: "number",
-    //   title: "Отношения, которые вы ищете:",
-    //   enum: [ 0,1,2,3 ],
-    //   enumNames: [
-    //     "Друзья по переписке",
-    //     "Дружба",
-    //     "Романтические отношения / свидания",
-    //     "Брак"
-    //   ],
-    // },
     "checkboxs": {//input date
       title: "Отношения, которые вы ищете:",
       type: "object",
@@ -86,6 +84,10 @@ const schema = {
     "aboutMe": { //textArea
       type: "string",
       title: "Немного о себе:",
+    },
+    'subTitle-secondaryData': { //subtitle
+      type: "string",
+      title: "Ваша внешность",
     },
   }
 };

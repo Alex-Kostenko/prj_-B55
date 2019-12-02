@@ -1,0 +1,59 @@
+:root {
+  --main-size: 14px;
+}
+
+form {
+  border: 2px solid #00000080;
+  border-radius: 15px;
+  margin: 15px;
+  overflow: hidden;
+}
+
+form fieldset {
+  width: 100%;
+}
+
+.field-object #root_checkboxs {
+  border-bottom: 1px solid #c1c1c1;
+}
+
+.field-object #root_dateOfBirth {
+  border-bottom: 1px solid #c1c1c1;
+}
+
+form > div fieldset > div {
+  display: flex;
+}
+
+fieldset legend {
+  font-size: var(--main-size)
+}
+
+.form__itemWrap {
+  padding: 15px;
+  width: 100%;
+  border-bottom: 1px solid #c1c1c1;
+  margin-bottom: 0;
+}
+
+.form__title {
+  background-color:#f8f8f8;
+  margin-bottom: 0;
+}
+
+.form__desc {
+  background-color: #fefde5;
+}
+
+.form__nav {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.field-object #root_dateOfBirth {
+  padding: 0 20px 20px
+}
+
+.field-object #root_checkboxs {
+  padding: 0 20px 20px
+}

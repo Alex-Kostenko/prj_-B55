@@ -1,13 +1,20 @@
 import React from 'react';
 import Form from "react-jsonschema-form";
+import {
+  Button
+} from 'antd';
+
 import schema from "../formSchema/schema";
 import widgets from "../formSchema/widgets";
 import uiSchema from "../formSchema/uiSchema";
 
+import './style.css';
+
+
 function ErrorListTemplate(props) {
   const { errors } = props;
   console.log(errors);
-  
+
   return (
     <ul>
       {errors.map(error => (
@@ -19,8 +26,6 @@ function ErrorListTemplate(props) {
   );
 }
 
-
-
 const log = (type) => console.log.bind(console, type);
 
 const UserInfo = () => {
@@ -28,7 +33,7 @@ const UserInfo = () => {
   const formData = {
     'name': 'UserName',
     'gender': 1,
-    'dateOfBirth': {'mouth': 5, 'year': 2000},
+    'dateOfBirth': {'mouth': '25', 'year': '1985'},
     'country': "ukr",
     'checkboxs': { 1: true },
     'radio': 2,
@@ -36,16 +41,25 @@ const UserInfo = () => {
   };
 
   return (
-    <Form 
+    <Form
       schema={schema}
       widgets={widgets}
       formData={formData}
       uiSchema={uiSchema}
-      ErrorList={ErrorListTemplate} 
+      ErrorList={ErrorListTemplate}
       onChange={log("changed")}
       onSubmit={log("submitted")}
-      onError={log("errors")} 
-    />
+      onError={log("errors")}
+    >
+      <div className="form__nav">
+        <Button type="primary" htmlType="submit" className="m15">
+          Update profile
+        </Button>
+        <Button type="danger" htmlType="button" className="m15">
+          Cansel
+        </Button>
+      </div>
+    </Form>
   );
 };
 

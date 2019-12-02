@@ -1,4 +1,13 @@
 const uiSchema = {
+  'formTitle':{
+    'ui:title': ' ',
+    'ui:description': ' ',
+    'ui:widget': 'FormTitle',
+  },
+  'subTitle-mainData':{
+    'ui:title': ' ',
+    'ui:widget': 'SubTitle',
+  },
   'dateOfBirth': {
     'ui:title': ' ',
     'titleDateOfBirth':{},
@@ -16,7 +25,9 @@ const uiSchema = {
         ],
       }
     },
-    'descriptioneDateOfBirth':{
+    'descriptioneDateOfBirth': {
+      'ui:field': 'hidden',
+      'ui:widget': '',
       'ui:title': ' ',
     },
   },
@@ -61,6 +72,10 @@ const uiSchema = {
   'aboutMe':{
     'ui:widget': 'CustomTextArea',
     'ui:field': 'hidden',
+  },
+  'subTitle-secondaryData':{
+    'ui:title': ' ',
+    'ui:widget': 'SubTitle',
   }
 }
 
