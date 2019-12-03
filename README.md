@@ -14,7 +14,7 @@ Actually, there are two separated apps. The Client which serves the FrontEnd (us
 ## How to run the ALL
 1. In your terminal, navigate to the main directory.
 2. Run `docker-compose up --build` to install all dependencies.
-3. Run `npm start` to start the app.
+3. Run `docker-compose up` to start the app.
 
 
 ## Check if they are connected
