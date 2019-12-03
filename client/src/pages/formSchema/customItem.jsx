@@ -165,7 +165,7 @@ export const CustomDateYear = (props) => {
       )}
     </Select>
   );
-} 
+}
 
 export const CustomDateMonth = (props) => {
 
@@ -175,7 +175,7 @@ export const CustomDateMonth = (props) => {
   const month = moment.months();
 
   return (
-    <Select name={id} onChange={(value) => onChange(value)} value={value} >
+    <Select name={id} onChange={(value) => onChange(value)} value={value}>
       <Option value="defaultMonth" disabled defaultValue > Month </Option>
       {month.map((item, i) =>
         <Option value={i+1} key={i}> {item} </Option>
@@ -208,9 +208,9 @@ export const CustomCheckBox = (props) => {
   return(
     <div>
       <Checkbox 
-        id={id}  
-        name={id} 
-        checked={value} 
+        id={id}
+        name={id}
+        checked={value}
         onChange={(e) => onChange(e.target.checked)}
       >
         {label}

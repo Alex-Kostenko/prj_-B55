@@ -31,9 +31,9 @@ const log = (type) => console.log.bind(console, type);
 const UserInfo = () => {
 
   const formData = {
-    'name': 'UserName',
+    'name': 'User Name',
     'gender': 1,
-    'dateOfBirth': {'mouth': '25', 'year': '1985'},
+    'dateOfBirth': {'mouth': 1, 'year': '1995'},
     'country': "ukr",
     'checkboxs': { 1: true },
     'radio': 2,

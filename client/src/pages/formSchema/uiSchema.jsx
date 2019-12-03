@@ -21,7 +21,7 @@ const uiSchema = {
       'ui:options': {
         'dateRange': [
           1980,
-          2030
+          2020
         ],
       }
     },
