@@ -21,11 +21,26 @@ const UserSchema = new Schema({
     required: true,
   },
   gender: {
-    type: String,
+    type: Number,
   },
   searchGender: {
     type: String,
   },
+  country:{
+    type: String,
+  },
+  checkboxs:{
+    type: Object,
+  },
+  radio:{
+    type: Number,
+  },
+  aboutMe:{
+    type: String,
+  },
+  dateOfBirth:{
+    type: Object,
+  }
 });
 
 module.exports = mongoose.model('User', UserSchema);

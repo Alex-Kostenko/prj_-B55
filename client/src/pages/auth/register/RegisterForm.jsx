@@ -78,8 +78,8 @@ const RegisterForm = ({ register, form }) => {
           rules: [{ required: false, message: 'Please Enter Your Age' }],
         })(
           <Radio.Group buttonStyle="solid">
-            <Radio.Button value="1">Man</Radio.Button>
-            <Radio.Button value="0">Female</Radio.Button>
+            <Radio.Button value={parseInt(1)}>Man</Radio.Button>
+            <Radio.Button value={parseInt(0)}>Female</Radio.Button>
           </Radio.Group>
         )}
       </Form.Item>

@@ -54,7 +54,7 @@ const RenderUser = () => {
         setPendisg(true)
         return response;
       }).then(function (body) {
-        alert(body);
+        // alert(body);
         setPendisg(false)
       });
   }
@@ -64,7 +64,7 @@ const RenderUser = () => {
       <div>
         <label>
           User name:
-        <Input
+          <Input
             placeholder="username"
             value={user.username}
             prefix={
@@ -77,7 +77,7 @@ const RenderUser = () => {
 
         <label>
           Email:
-        <Input
+          <Input
             placeholder="email"
             value={user.email}
             prefix={
@@ -90,7 +90,7 @@ const RenderUser = () => {
 
         <label>
           Age:
-        <Input
+          <Input
             placeholder="age"
             value={user.age}
             prefix={

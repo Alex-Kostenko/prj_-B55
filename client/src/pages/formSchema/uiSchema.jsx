@@ -35,7 +35,7 @@ const uiSchema = {
     'ui:widget': 'CustomSelect',
     'ui:field': 'hidden',
   },
-  'name': {
+  'username': {
     'ui:widget': 'CustomInput',
     'ui:field': 'hidden',
   },
@@ -76,6 +76,10 @@ const uiSchema = {
   'subTitle-secondaryData':{
     'ui:title': ' ',
     'ui:widget': 'SubTitle',
+  },
+  'lang':{
+    'ui:title': ' ',
+    'ui:widget': 'CustomMultiSelect',
   }
 }
 

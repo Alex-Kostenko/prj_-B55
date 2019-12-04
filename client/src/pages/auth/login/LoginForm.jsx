@@ -27,6 +27,8 @@ const LoginForm = ( props ) => {
     event.preventDefault();
 
     validateFields((err, values) => {
+      console.log(values);
+      
       if (!err) {
         authAxios.post('http://localhost:9000/auth/login', values)
           .then(function (response) {
@@ -46,7 +48,7 @@ const LoginForm = ( props ) => {
   };
 
   return (
-    redirect ? <Redirect to='/user' /> : 
+    redirect ? <Redirect to='/userInfo' /> : 
     <> 
       <Title> Members Login </Title>
       <Form onSubmit={onHandleSubmit} className="login-form">

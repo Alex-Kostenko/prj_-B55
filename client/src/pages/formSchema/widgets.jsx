@@ -8,7 +8,8 @@ import {
   CustomTextArea,
   CustomCheckBox,
   SubTitle,
-  FormTitle
+  FormTitle,
+  CustomMultiSelect
  } from "../formSchema/customItem";
 
 const widgets = {
@@ -21,8 +22,8 @@ const widgets = {
   CustomDateMonth: CustomDateMonth,
   CustomCheckBox: CustomCheckBox,
   SubTitle: SubTitle,
-  FormTitle: FormTitle
-
+  FormTitle: FormTitle,
+  CustomMultiSelect: CustomMultiSelect
 };
 
 export default widgets;

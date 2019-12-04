@@ -6,9 +6,12 @@ import {
   Radio
 } from 'antd';
 import 'moment/locale/ru';
-const { Option } = Select;
+import countryList from 'react-select-country-list'
+const { Option, OptGroup } = Select;
 const { TextArea } = Input;
 const moment = require('moment');
+
+const arrayCountyList = countryList().getData();
 
 
 export const CustomSelect = (props) => {
@@ -218,3 +221,43 @@ export const CustomCheckBox = (props) => {
     </div>
   );
 }
+
+export const CustomMultiSelect = (props) => {
+  // console.log("select", props);
+
+  const { schema, label, onChange, id, value } = props;
+  const pupularlang = [
+    { value: "FO", label: "Faroe Islands" },
+    { value: "FJ", label: "Fiji" },
+    { value: "FI", label: "Finland" },
+    { value: "FR", label: "France" },
+  ];
+
+  const date = schema.enum;
+  const dateTitle = schema.enumNames;
+
+  console.log(arrayCountyList);
+  
+
+  return (
+    <label className="form__itemWrap df">
+      <div className="fb30">{label}</div>
+      <Select mode="multiple" name={label} id={id} onChange={(value) => onChange(value)} value={value} className="fb70">
+        <OptGroup label="Популярные">
+          {pupularlang.map((item, i) =>
+            <Option value={item.value} key={item.value} >
+              {item.label}
+            </Option>
+          )}
+        </OptGroup>
+        <OptGroup label="Другие языки">
+          {arrayCountyList.map((item, i) =>
+            <Option value={item.value} key={item.value} >
+              {item.label}
+            </Option>
+          )}
+        </OptGroup>
+      </Select>
+    </label>
+  );
+} //done

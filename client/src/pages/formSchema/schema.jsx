@@ -1,7 +1,7 @@
 const schema = {
   title: "",
   type: "object",
-  required: ['name'],
+  required: ['username'],
   properties: {
     'formTitle': { //formTitle
       type: "string",
@@ -12,7 +12,7 @@ const schema = {
       type: "string",
       title: "Основные сведения о вас:",
     },
-    'name': { //input text
+    'username': { //input text
       type: "string",
       title: "Имя:",
     },
@@ -30,10 +30,10 @@ const schema = {
           type: "object",
         },
         'mouth':{
-          type: "string",
+          type: "number",
         },
         'year':{
-          type: "string",
+          type: "number",
         },
         'descriptioneDateOfBirth': {
           title: '',
@@ -88,6 +88,10 @@ const schema = {
     'subTitle-secondaryData': { //subtitle
       type: "string",
       title: "Ваша внешность",
+    },
+    'lang': { //subtitle
+      type: "string",
+      title: "Владения языками:",
     },
   }
 };
