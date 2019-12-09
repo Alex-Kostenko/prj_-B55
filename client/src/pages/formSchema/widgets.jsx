@@ -9,7 +9,7 @@ import {
   CustomCheckBox,
   SubTitle,
   FormTitle,
-  CustomMultiSelect
+  CustomMultiSelectLang
  } from "../formSchema/customItem";
 
 const widgets = {
@@ -23,7 +23,7 @@ const widgets = {
   CustomCheckBox: CustomCheckBox,
   SubTitle: SubTitle,
   FormTitle: FormTitle,
-  CustomMultiSelect: CustomMultiSelect
+  CustomMultiSelectLang: CustomMultiSelectLang
 };
 
 export default widgets;

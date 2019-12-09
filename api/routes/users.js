@@ -43,12 +43,8 @@ router.post("/login", passport.authenticate("local"), function (req, res) {
 // editUser
 router.post("/editUser/:userId", function (req, res) {
   const id = req.params.userId;
-  User.editUser(id, req.body);
-  res.send(req.body);
-});
-
-router.post("/userInfo/:userId", function (req, res) {
-  const id = req.params.userId;
+  // console.log(req.body.data.imgList);
+  
   User.editUser(id, req.body);
   res.send(req.body);
 });

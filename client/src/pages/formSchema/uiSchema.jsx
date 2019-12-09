@@ -79,7 +79,7 @@ const uiSchema = {
   },
   'lang':{
     'ui:title': ' ',
-    'ui:widget': 'CustomMultiSelect',
+    'ui:widget': 'CustomMultiSelectLang',
   }
 }
 

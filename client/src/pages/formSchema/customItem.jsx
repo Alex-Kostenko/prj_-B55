@@ -41,7 +41,7 @@ export const FormTitle = (props) => {
   const { description } = schema;
 
   return (
-    <div>
+    <div className="w100">
       <h2 className="form__title form__itemWrap">
         {label}
       </h2>
@@ -195,6 +195,7 @@ export const CustomTextArea = (props) => {
     <label className="form__itemWrap">
       {label}
       <TextArea
+        autoSize={{ minRows: 2, maxRows: 6 }}
         name={label}
         onChange={(e) => onChange(e.target.value)}
         id={id}
@@ -222,27 +223,29 @@ export const CustomCheckBox = (props) => {
   );
 }
 
-export const CustomMultiSelect = (props) => {
+export const CustomMultiSelectLang = (props) => {
   // console.log("select", props);
 
-  const { schema, label, onChange, id, value } = props;
+  const { label, onChange, id, value } = props;
   const pupularlang = [
-    { value: "FO", label: "Faroe Islands" },
-    { value: "FJ", label: "Fiji" },
-    { value: "FI", label: "Finland" },
-    { value: "FR", label: "France" },
+    { value: "UA", label: "Ukraine" },
+    { value: "US", label: "United States" },
+    { value: "RU", label: "Russian Federation" },
   ];
 
-  const date = schema.enum;
-  const dateTitle = schema.enumNames;
-
-  console.log(arrayCountyList);
   
 
   return (
-    <label className="form__itemWrap df">
-      <div className="fb30">{label}</div>
-      <Select mode="multiple" name={label} id={id} onChange={(value) => onChange(value)} value={value} className="fb70">
+    <div className="form__itemWrap df">
+      <div className="fb30">
+        {label}
+      </div>
+      <Select 
+        mode="multiple"
+        name={label} id={id}
+        onChange={(value) => onChange(JSON.stringify(value))}
+        value={typeof value === 'string' ? JSON.parse(value) : value } className="fb70"
+      >
         <OptGroup label="Популярные">
           {pupularlang.map((item, i) =>
             <Option value={item.value} key={item.value} >
@@ -258,6 +261,6 @@ export const CustomMultiSelect = (props) => {
           )}
         </OptGroup>
       </Select>
-    </label>
+    </div>
   );
 } //done

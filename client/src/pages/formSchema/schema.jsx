@@ -1,3 +1,5 @@
+import I18n from '../../i18n';
+
 const schema = {
   title: "",
   type: "object",
@@ -5,8 +7,8 @@ const schema = {
   properties: {
     'formTitle': { //formTitle
       type: "string",
-      title: "Редактировать профиль",
-      description: "Ответы на эти вопросы профиля помогут другим пользователям найти вас в результатах поиска и помогут нам найти для вас более точные соответствия. Ответьте на все вопросы ниже для завершения этого шага.",
+      title: I18n.title,
+      description: I18n.description,
     },
     'subTitle-mainData': { //subtitle
       type: "string",
@@ -14,11 +16,11 @@ const schema = {
     },
     'username': { //input text
       type: "string",
-      title: "Имя:",
+      title: I18n.userName,
     },
     'gender': { //select
       type: "number",
-      title: "Пол",
+      title: I18n.gender,
       enum: [0, 1],
       enumNames: ["female", "man"]
     },
@@ -26,7 +28,7 @@ const schema = {
       type: "object",
       properties: {
         'titleDateOfBirth':{
-          title: "Дата рождения:",
+          title: I18n.date,
           type: "object",
         },
         'mouth':{
@@ -37,14 +39,14 @@ const schema = {
         },
         'descriptioneDateOfBirth': {
           title: '',
-          description: "* Для защиты Вашей конфиденциальности, мы сохраняем только месяц и год Вашего рождения",
+          description: I18n.warning,
           type: "object",
         },
       }
     },
     'country': {
       type: "string",
-      title: "Страна",
+      title: I18n.country,
       enum: ["ukr", "mol", "rus"],
       enumNames: ["Украина", "Молдова", "Россия"]
     },

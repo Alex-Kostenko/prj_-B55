@@ -18,7 +18,7 @@ const LoginForm = ( props ) => {
       .then(function (res) {
         console.log(res);
       })
-
+    localStorage.setItem('lang', JSON.stringify('Ukr'));
     localStorage.removeItem('currentUser');
     sessionStorage.removeItem('currentUser');
   }, []);
@@ -37,9 +37,9 @@ const LoginForm = ( props ) => {
             const remember = JSON.parse(body.config.data).remember
 
             if (remember) {
-              window.localStorage.setItem('currentUser', JSON.stringify(body));
+              window.localStorage.setItem('currentUser', JSON.stringify(body.data));
             } else {
-              window.sessionStorage.setItem('currentUser', JSON.stringify(body));
+              window.sessionStorage.setItem('currentUser', JSON.stringify(body.data));
             }
             setRedirect(true)
           });
@@ -48,7 +48,7 @@ const LoginForm = ( props ) => {
   };
 
   return (
-    redirect ? <Redirect to='/userInfo' /> : 
+    redirect ? <Redirect to='/editUser' /> : 
     <> 
       <Title> Members Login </Title>
       <Form onSubmit={onHandleSubmit} className="login-form">

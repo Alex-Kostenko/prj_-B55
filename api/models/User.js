@@ -40,7 +40,16 @@ const UserSchema = new Schema({
   },
   dateOfBirth:{
     type: Object,
-  }
-});
+  },
+  lang:{
+    type: String,
+  },
+  imgList:{
+    type: Array,
+  },
+  avatar:{
+    type: Array
+  },
+}, {versionKey: '_2'});
 
 module.exports = mongoose.model('User', UserSchema);

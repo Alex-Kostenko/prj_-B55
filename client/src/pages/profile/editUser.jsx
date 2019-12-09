@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Form from "react-jsonschema-form";
 import {
-  Button
+  Button,
+  Modal
 } from 'antd';
 import axios from "axios";
 
 import schema from "../formSchema/schema";
 import widgets from "../formSchema/widgets";
 import uiSchema from "../formSchema/uiSchema";
-import updateUser from "../../utils/updataUser";
+import updataUser from "../../utils/updataUser";
 
 import './style.css';
 const authAxios = axios.create();
@@ -37,12 +38,13 @@ const UserInfo = () => {
   const [pending, setPendisg] = useState(false);
 
   useEffect(() => {
+    let currentUser;
     if (window.sessionStorage.getItem('currentUser')) {
-      setUser(JSON.parse(window.sessionStorage.getItem('currentUser')).data);
+      currentUser = JSON.parse(window.sessionStorage.getItem('currentUser'))
     } else {
-      JSON.parse(window.localStorage.getItem('currentUser')) &&
-        setUser(JSON.parse(window.localStorage.getItem('currentUser')).data);
+      currentUser = JSON.parse(window.localStorage.getItem('currentUser'))
     }
+    setUser(currentUser);
   }, []);
 
   const onHandleSubmit = event => {
@@ -53,23 +55,23 @@ const UserInfo = () => {
       .then((response) => {
         return response;
       }).then((body) => {
+        console.log(body);
+
         setUser(body.data)
-        updateUser(body.data)
-        setTimeout(() => {
+        updataUser(body.data)
+        // setTimeout(() => {
           setPendisg(false)
-        }, 500);
+        // }, 500);
       });
+    success();
   };
 
-  // const formData = {
-  //   'username': 'User Name',
-  //   'gender': 1,
-  //   'dateOfBirth': {'mouth': 1, 'year': '1995'},
-  //   'country': "ukr",
-  //   'checkboxs': { 1: true },
-  //   'radio': 2,
-  //   'aboutMe': 'about user about user about user'
-  // };
+  const success = () => {
+    Modal.success({
+      content: 'Profile updated',
+    });
+  }
+
   const formData = user;
 
   return (

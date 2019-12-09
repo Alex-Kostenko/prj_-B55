@@ -6,12 +6,14 @@ import {
   Link
 } from "react-router-dom";
 
+import RenderSelectLang from "../components/selectLang"
+
 // import ErrorBoundary from './components/ErrorBoundary';
 
 import HomePage from '../pages/home';
 import RegisterPage from '../pages/auth/register';
-import RenderUser from '../pages/user';
-import UserInfo from '../pages/user/userInfo';
+import RenderUser from '../pages/profile';
+import EditUser from '../pages/profile/editUser';
 
 const RoutesPage = () => {
   return (
@@ -30,9 +32,10 @@ const RoutesPage = () => {
               <Link to="/user"> User </Link>
             </li>
             <li>
-              <Link to="/userInfo"> UserInfo </Link>
+              <Link to="/editUser"> UserInfo </Link>
             </li>
           </ul>
+          <RenderSelectLang />
         </nav>
 
         <hr />
@@ -47,8 +50,8 @@ const RoutesPage = () => {
           <Route path="/user">
             <RenderUser />
           </Route>
-          <Route path="/userInfo">
-            <UserInfo />
+          <Route path="/editUser">
+            <EditUser />
           </Route>
         </Switch>
       </div>
