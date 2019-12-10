@@ -27,3 +27,11 @@
 .w100 {
   width: 100%;
 }
+
+.customSelect {
+  min-width: 100px;
+}
+
+.ant-layout-content {
+  min-height: calc(100vh - 140px);
+}

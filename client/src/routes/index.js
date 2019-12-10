@@ -3,60 +3,30 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
+import { Layout } from 'antd';
 
-import RenderSelectLang from "../components/selectLang"
+import Header from "../components/header";
+import RenderFooter from "../components/footer";
+import routs from "./routs";
 
-// import ErrorBoundary from './components/ErrorBoundary';
-
-import HomePage from '../pages/home';
-import RegisterPage from '../pages/auth/register';
-import RenderUser from '../pages/profile';
-import EditUser from '../pages/profile/editUser';
+const { Content } = Layout;
 
 const RoutesPage = () => {
   return (
-    // <ErrorBoundary>
     <Router>
-      <div>
-        <nav>
-          <ul className="navigation">
-            <li>
-              <Link to="/"> LoginPage </Link>
-            </li>
-            <li>
-              <Link to="/registration"> RegisterPage </Link>
-            </li>
-            <li>
-              <Link to="/user"> User </Link>
-            </li>
-            <li>
-              <Link to="/editUser"> UserInfo </Link>
-            </li>
-          </ul>
-          <RenderSelectLang />
-        </nav>
-
-        <hr />
-
+      <Header />
+      <Content> 
         <Switch>
-          <Route exact path="/">
-            <HomePage />
-          </Route>
-          <Route path="/registration">
-            <RegisterPage />
-          </Route>
-          <Route path="/user">
-            <RenderUser />
-          </Route>
-          <Route path="/editUser">
-            <EditUser />
-          </Route>
+          {routs.map((rout, i)=> 
+            <Route path={rout.path} key={i} exact={rout.exact}>
+              <rout.component />
+            </Route>
+          )}
         </Switch>
-      </div>
+      </Content>
+      <RenderFooter/>
     </Router>
-    // </ErrorBoundary>
   );
 };
 

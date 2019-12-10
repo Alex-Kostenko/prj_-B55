@@ -6,11 +6,10 @@ import './style.css';
 
 const RegisterPage = () => {
   return (
-    <section className="register">
-      <h1>REGISTRATION</h1>
+    <section className="login">
       <RegisterForm />
     </section>
-  );
+  )
 };
 
 export default RegisterPage;

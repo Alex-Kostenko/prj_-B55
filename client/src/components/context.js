@@ -3,7 +3,7 @@ import React, { useState, createContext } from 'react';
 export const Lang = createContext([{}, () => { }]);
 
 const LangProvider = (props) => {
-  const [lang, setLang] = useState(localStorage.getItem('lang'));
+  const [lang, setLang] = useState(JSON.parse(localStorage.getItem('lang')));
 
   return (
     <Lang.Provider value={[lang, setLang]}>

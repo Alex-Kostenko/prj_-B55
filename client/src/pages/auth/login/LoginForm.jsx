@@ -27,8 +27,7 @@ const LoginForm = ( props ) => {
     event.preventDefault();
 
     validateFields((err, values) => {
-      console.log(values);
-      
+
       if (!err) {
         authAxios.post('http://localhost:9000/auth/login', values)
           .then(function (response) {

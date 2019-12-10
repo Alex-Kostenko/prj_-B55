@@ -6,8 +6,8 @@ const { Option } = Select;
 const RenderSelectLang = () => {
   const [lang, setLang] = useContext(Lang);
 
-  const handleChange = (v) => { 
-    localStorage.setItem('lang', v);
+  const handleChange = (v) => {
+    localStorage.setItem('lang', JSON.stringify(v));
     setLang(v);
   }
 
@@ -15,6 +15,7 @@ const RenderSelectLang = () => {
     <Select 
       value={lang} 
       onChange={handleChange}
+      className="customSelect"
     >
       <Option value="Ru">  Ru  </Option>
       <Option value="Eng"> Eng </Option>
