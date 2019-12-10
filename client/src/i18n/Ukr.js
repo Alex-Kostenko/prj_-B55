@@ -1,11 +1,11 @@
 const Ukr = {
-  title: 'Редактировать профиль',
-  description: 'Ответы на эти вопросы профиля помогут другим пользователям найти вас в результатах поиска и помогут нам найти для вас более точные соответствия. Ответьте на все вопросы ниже для завершения этого шага.',
-  userName: 'Имя:',
-  gender: 'Пол',
-  date: 'Дата рождения:',
-  warning: '* Для защиты Вашей конфиденциальности, мы сохраняем только месяц и год Вашего рождения',
-  country: 'Страна',
+  title: 'Ukr title',
+  description: 'Ukr description',
+  userName: 'Ukr userName',
+  gender: 'Ukr gender',
+  date: 'Ukr date',
+  warning: 'Ukr warning',
+  country: 'Ukr country',
 };
 
 export default Ukr;

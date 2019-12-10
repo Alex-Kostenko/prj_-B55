@@ -4,11 +4,11 @@ import './index.css';
 import './App.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-// import { AppContextProvider } from './appContext';
+import  LangProvider from './components/context';
 
 ReactDOM.render(
-  // <AppContextProvider>
+  <LangProvider>
     <App />
-  // </AppContextProvider>
+  </LangProvider>
 , document.getElementById('root'));
 registerServiceWorker();

@@ -233,8 +233,6 @@ export const CustomMultiSelectLang = (props) => {
     { value: "RU", label: "Russian Federation" },
   ];
 
-  
-
   return (
     <div className="form__itemWrap df">
       <div className="fb30">

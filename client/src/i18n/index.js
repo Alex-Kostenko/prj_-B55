@@ -1,10 +1,11 @@
 import Ukr from './Ukr.js';
 import Eng from './Eng.js';
-const locale = localStorage.getItem('lang');
+import Ru from './Ru.js';
 
 const I18n = {
   'Eng': Eng,
-  'Ukr': Ukr
-};
+  'Ukr': Ukr,
+  'Ru': Ru
+}
 
-export default I18n[locale];
+export default I18n;

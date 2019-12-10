@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import Form from "react-jsonschema-form";
+import { Redirect } from "react-router";
 import {
   Button,
   Modal
 } from 'antd';
 import axios from "axios";
+import { useContext } from "react";
+import { Lang } from '../../components/context'
 
-import schema from "../formSchema/schema";
+// import schema from "../formSchema/schema";
 import widgets from "../formSchema/widgets";
 import uiSchema from "../formSchema/uiSchema";
 import updataUser from "../../utils/updataUser";
+import I18n from "../../i18n";
 
 import './style.css';
+
 const authAxios = axios.create();
 
 
@@ -36,6 +41,106 @@ const UserInfo = () => {
 
   const [user, setUser] = useState(0);
   const [pending, setPendisg] = useState(false);
+  const [lang] = useContext(Lang);
+  const i18n = I18n[lang];
+
+  const schema = {
+    title: "",
+    type: "object",
+    required: ['username'],
+    properties: {
+      'formTitle': { //formTitle
+        type: "string",
+        title: i18n.title,
+        description: i18n.description,
+      },
+      'subTitle-mainData': { //subtitle
+        type: "string",
+        title: "Основные сведения о вас:",
+      },
+      'username': { //input text
+        type: "string",
+        title: i18n.userName,
+      },
+      'gender': { //select
+        type: "number",
+        title: i18n.gender,
+        enum: [0, 1],
+        enumNames: ["female", "man"]
+      },
+      "dateOfBirth": {//input date
+        type: "object",
+        properties: {
+          'titleDateOfBirth': {
+            title: i18n.date,
+            type: "object",
+          },
+          'mouth': {
+            type: "number",
+          },
+          'year': {
+            type: "number",
+          },
+          'descriptioneDateOfBirth': {
+            title: '',
+            description: i18n.warning,
+            type: "object",
+          },
+        }
+      },
+      'country': {
+        type: "string",
+        title: i18n.country,
+        enum: ["ukr", "mol", "rus"],
+        enumNames: ["Украина", "Молдова", "Россия"]
+      },
+      "checkboxs": {//input date
+        title: "Отношения, которые вы ищете:",
+        type: "object",
+        properties: {
+          '1': {
+            title: 'Дружба',
+            type: "boolean",
+          },
+          '2': {
+            title: 'Романтические отношения / свидания',
+            type: "boolean",
+          },
+          '3': {
+            title: 'Друзья по переписке',
+            type: "boolean",
+          },
+          '4': {
+            title: 'Брак',
+            type: "boolean",
+          },
+        }
+      },
+      "radio": { //radio
+        type: "number",
+        title: "Отношения, которые вы ищете:",
+        enum: [0, 1, 2, 3],
+        enumNames: [
+          "Друзья по переписке",
+          "Дружба",
+          "Романтические отношения / свидания",
+          "Брак"
+        ],
+      },
+      "aboutMe": { //textArea
+        type: "string",
+        title: "Немного о себе:",
+      },
+      'subTitle-secondaryData': { //subtitle
+        type: "string",
+        title: "Ваша внешность",
+      },
+      'lang': { //subtitle
+        type: "string",
+        title: "Владения языками:",
+      },
+    }
+  };
 
   useEffect(() => {
     let currentUser;
@@ -103,7 +208,8 @@ const UserInfo = () => {
           </Button>
         </div>
       </Form>
-      : <div> not authorized </div>
+      : 
+      <Redirect to='/' />
   );
 };
 

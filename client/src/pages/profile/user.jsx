@@ -26,7 +26,7 @@ const RenderUser = () => {
 
     setUser(currentUser);
 
-    if (currentUser.imgList) {
+    if (currentUser && currentUser.imgList) {
       setSelectedFileList(currentUser.imgList.fileList)
     }
 
@@ -111,7 +111,7 @@ const RenderUser = () => {
         </Modal>
       </div>
       :
-      <Redirect to='/login'/>
+      <Redirect to='/'/>
   );
 };
 
