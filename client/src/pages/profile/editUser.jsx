@@ -164,9 +164,7 @@ const UserInfo = () => {
 
         setUser(body.data)
         updataUser(body.data)
-        // setTimeout(() => {
-          setPendisg(false)
-        // }, 500);
+        setPendisg(false)
       });
     success();
   };

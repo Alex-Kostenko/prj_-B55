@@ -16,9 +16,9 @@ const RenderSelectLang = () => {
       value={lang} 
       onChange={handleChange}
     >
-      <Option value="Ukr">Ukr</Option>
-      <Option value="Eng">Eng</Option>
-      <Option value="Ru">Ru</Option>
+      <Option value="Ru">  Ru  </Option>
+      <Option value="Eng"> Eng </Option>
+      <Option value="Ukr"> Ukr </Option>
     </Select>
   )
 }
