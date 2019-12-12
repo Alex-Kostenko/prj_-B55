@@ -3,6 +3,10 @@
     "title": "Авторизацiя",
     "description": "description"
   },
+  "register": {
+    "title": "Реєстрація",
+    "description": "description"
+  },
   "title": "Ukr title",
   "description": "Ukr description",
   "userName": "Ukr userName",

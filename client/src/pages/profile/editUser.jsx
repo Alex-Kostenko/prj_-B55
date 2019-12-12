@@ -6,11 +6,8 @@ import {
   Modal
 } from 'antd';
 import axios from "axios";
-import { useContext } from "react";
 import { useTranslation } from 'react-i18next';
 
-// import schema from "../formSchema/schema";
-// import { Lang } from '../../components/context'
 import widgets from "../formSchema/widgets";
 import uiSchema from "../formSchema/uiSchema";
 import updataUser from "../../utils/updataUser";
@@ -18,7 +15,6 @@ import updataUser from "../../utils/updataUser";
 import './style.css';
 
 const authAxios = axios.create();
-
 
 function ErrorListTemplate(props) {
   const { errors } = props;
@@ -36,6 +32,7 @@ function ErrorListTemplate(props) {
 }
 
 const log = (type) => console.log.bind(console, type);
+
 
 const UserInfo = () => {
   const { t } = useTranslation();
@@ -159,8 +156,6 @@ const UserInfo = () => {
       .then((response) => {
         return response;
       }).then((body) => {
-        console.log(body);
-
         setUser(body.data)
         updataUser(body.data)
         setPendisg(false)

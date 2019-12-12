@@ -3,6 +3,10 @@
     "title": "Login",
     "description": "description"
   },
+  "register": {
+    "title": "Register",
+    "description": "description"
+  },
   "title": "Eng title",
   "description": "Eng description",
   "userName": "eng userName",

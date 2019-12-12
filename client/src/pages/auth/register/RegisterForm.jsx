@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Input, Button, Radio, Typography } from 'antd';
+import { useTranslation } from 'react-i18next';
 import axios from "axios";
 import './style.css';
 
@@ -8,26 +9,24 @@ const { Title } = Typography;
 
 const RegisterForm = ({ register, form }) => {
   const { getFieldDecorator, validateFields } = form;
+  const { t } = useTranslation();
 
   const onHandleSubmit = event => {
     event.preventDefault();
 
     validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
-
         authAxios.post('http://localhost:9000/auth/register', values)
           .then(function (response) {
             console.log(response);
           })
       }
     });
-
   };
 
   return (
     <>
-      <Title> Register </Title>
+      <Title> {t('register.title')} </Title>
       <Form onSubmit={onHandleSubmit} className="login-form">
         <Form.Item>
           {getFieldDecorator('username', {
