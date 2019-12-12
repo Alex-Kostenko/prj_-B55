@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import axios from "axios";
 import { Redirect } from "react-router"; 
 import { Form, Input, Button, Checkbox, Typography } from 'antd';
-import { createBrowserHistory } from 'history';
 
 import './style.css';
 
-const authAxios = axios.create();
 const { Title } = Typography;
+const authAxios = axios.create();
+
 
 const LoginForm = ( props ) => {
   const { getFieldDecorator, validateFields } = props.form;
-
+  const { t } = useTranslation();
   const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
@@ -50,7 +51,7 @@ const LoginForm = ( props ) => {
   return (
     redirect ? <Redirect to='/editUser' /> : 
     <> 
-      <Title> Members Login </Title>
+      <Title>{t('login.title')} </Title>
       <Form onSubmit={onHandleSubmit} className="login-form">
         <Form.Item>
           {getFieldDecorator('username', {

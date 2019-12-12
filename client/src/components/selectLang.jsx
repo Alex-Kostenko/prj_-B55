@@ -1,25 +1,26 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Select } from 'antd';
-import { Lang } from './context'
+import { useTranslation } from 'react-i18next';
+
 const { Option } = Select;
 
+
 const RenderSelectLang = () => {
-  const [lang, setLang] = useContext(Lang);
+  const { i18n } = useTranslation();
 
   const handleChange = (v) => {
-    localStorage.setItem('lang', JSON.stringify(v));
-    setLang(v);
+    i18n.changeLanguage(v);
   }
 
   return (
     <Select 
-      value={lang} 
+      value={i18n.language} 
       onChange={handleChange}
       className="customSelect"
     >
-      <Option value="Ru">  Ru  </Option>
-      <Option value="Eng"> Eng </Option>
-      <Option value="Ukr"> Ukr </Option>
+      <Option value="ru-RU">  Ru  </Option>
+      <Option value="en"> Eng </Option>
+      <Option value="ua"> Ukr </Option>
     </Select>
   )
 }

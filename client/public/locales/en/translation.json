@@ -1,0 +1,13 @@
+{
+  "login": {
+    "title": "Login",
+    "description": "description"
+  },
+  "title": "Eng title",
+  "description": "Eng description",
+  "userName": "eng userName",
+  "gender": "eng gender",
+  "date": "eng date",
+  "warning": "* eng warning",
+  "country": "eng country"
+}

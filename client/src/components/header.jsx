@@ -14,7 +14,7 @@ const RenderHeader = ( ) => {
 
   useEffect(() => {
     setCurrentLocation(location)
-  })
+  }, [location])
 
   return (
     <Header>
@@ -25,13 +25,13 @@ const RenderHeader = ( ) => {
         style={{ lineHeight: '64px' }}
       >
         <Menu.Item key="/">
-          <Link to="/"> 
-            LoginPage 
+          <Link to="/">
+            LoginPage
           </Link>
         </Menu.Item>
         <Menu.Item key="/registration">
-          <Link to="/registration"> 
-            RegisterPage 
+          <Link to="/registration">
+            RegisterPage
           </Link>
         </Menu.Item>
         <Menu.Item key="/user">
@@ -41,10 +41,10 @@ const RenderHeader = ( ) => {
         </Menu.Item>
         <Menu.Item key="/editUser">
           <Link to="/editUser">
-            UserInfo 
+            UserInfo
           </Link>
         </Menu.Item>
-        <Menu.Item >
+        <Menu.Item>
           <RenderSelectLang />
         </Menu.Item>
       </Menu>

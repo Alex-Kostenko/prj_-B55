@@ -7,13 +7,13 @@ import {
 } from 'antd';
 import axios from "axios";
 import { useContext } from "react";
-import { Lang } from '../../components/context'
+import { useTranslation } from 'react-i18next';
 
 // import schema from "../formSchema/schema";
+// import { Lang } from '../../components/context'
 import widgets from "../formSchema/widgets";
 import uiSchema from "../formSchema/uiSchema";
 import updataUser from "../../utils/updataUser";
-import I18n from "../../i18n";
 
 import './style.css';
 
@@ -38,11 +38,10 @@ function ErrorListTemplate(props) {
 const log = (type) => console.log.bind(console, type);
 
 const UserInfo = () => {
-
+  const { t } = useTranslation();
   const [user, setUser] = useState(0);
   const [pending, setPendisg] = useState(false);
-  const [lang] = useContext(Lang);
-  const i18n = I18n[lang];
+
 
   const schema = {
     title: "",
@@ -51,8 +50,8 @@ const UserInfo = () => {
     properties: {
       'formTitle': { //formTitle
         type: "string",
-        title: i18n.title,
-        description: i18n.description,
+        title: t('title'),
+        description: t('description'),
       },
       'subTitle-mainData': { //subtitle
         type: "string",
@@ -60,11 +59,11 @@ const UserInfo = () => {
       },
       'username': { //input text
         type: "string",
-        title: i18n.userName,
+        title: t('userName'),
       },
       'gender': { //select
         type: "number",
-        title: i18n.gender,
+        title: t('gender'),
         enum: [0, 1],
         enumNames: ["female", "man"]
       },
@@ -72,7 +71,7 @@ const UserInfo = () => {
         type: "object",
         properties: {
           'titleDateOfBirth': {
-            title: i18n.date,
+            title: t('date'),
             type: "object",
           },
           'mouth': {
@@ -83,14 +82,14 @@ const UserInfo = () => {
           },
           'descriptioneDateOfBirth': {
             title: '',
-            description: i18n.warning,
+            description: t('warning'),
             type: "object",
           },
         }
       },
       'country': {
         type: "string",
-        title: i18n.country,
+        title: t('country'),
         enum: ["ukr", "mol", "rus"],
         enumNames: ["Украина", "Молдова", "Россия"]
       },
