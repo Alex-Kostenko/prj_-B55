@@ -1,25 +1,27 @@
 import React, {useState ,useEffect} from 'react';
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom"; 
 import { Layout, Menu } from 'antd';
 
 import RenderSelectLang from "../components/selectLang";
 
 const { Header } = Layout;
 
-const RenderHeader = () => {
-  const [currentLocation, setCurrentLocation] = useState(useLocation().pathname)
+
+const RenderHeader = ( ) => {
+  const location = useLocation().pathname;
+  const [currentLocation, setCurrentLocation] = useState(location);
 
   useEffect(() => {
-    setCurrentLocation()
-  }, [useLocation().pathname]);
+    setCurrentLocation(location)
+  })
 
   return (
     <Header>
       <Menu
         theme="dark"
         mode="horizontal"
-        defaultSelectedKeys={[currentLocation]}
+        selectedKeys={[currentLocation]}
         style={{ lineHeight: '64px' }}
       >
         <Menu.Item key="/">
