@@ -24,7 +24,7 @@ const UserSchema = new Schema({
     type: Number,
   },
   searchGender: {
-    type: String,
+    type: Number,
   },
   country:{
     type: String,
@@ -50,6 +50,11 @@ const UserSchema = new Schema({
   avatar:{
     type: Array
   },
+  _active:{
+    type: Boolean,
+    required: true,
+    default: true
+  }
 }, {versionKey: '_2'});
 
 module.exports = mongoose.model('User', UserSchema);

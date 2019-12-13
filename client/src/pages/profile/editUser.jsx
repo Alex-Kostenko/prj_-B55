@@ -38,7 +38,7 @@ const UserInfo = () => {
   const { t } = useTranslation();
   const [user, setUser] = useState(0);
   const [pending, setPendisg] = useState(false);
-
+  const formData = user;
 
   const schema = {
     title: "",
@@ -168,8 +168,6 @@ const UserInfo = () => {
       content: 'Profile updated',
     });
   }
-
-  const formData = user;
 
   return (
     window.sessionStorage.getItem('currentUser') || window.localStorage.getItem('currentUser') ?

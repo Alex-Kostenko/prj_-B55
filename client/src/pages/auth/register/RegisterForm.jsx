@@ -1,15 +1,27 @@
-import React from 'react';
-import { Form, Input, Button, Radio, Typography } from 'antd';
+import React, {useState} from 'react';
+import {
+  Form,
+  Input,
+  Button,
+  Radio,
+  Typography,
+  message
+} from 'antd';
 import { useTranslation } from 'react-i18next';
 import axios from "axios";
+import { Redirect } from "react-router";
+
 import './style.css';
 
 const authAxios = axios.create();
 const { Title } = Typography;
 
-const RegisterForm = ({ register, form }) => {
+
+const RegisterForm = ({ form }) => {
   const { getFieldDecorator, validateFields } = form;
   const { t } = useTranslation();
+
+  const [redirect, setRedirect] = useState(false);
 
   const onHandleSubmit = event => {
     event.preventDefault();
@@ -17,14 +29,29 @@ const RegisterForm = ({ register, form }) => {
     validateFields((err, values) => {
       if (!err) {
         authAxios.post('http://localhost:9000/auth/register', values)
-          .then(function (response) {
-            console.log(response);
+          .then(response => {
+            if (response.status >= 200 && response.status <= 299 ) {
+              return setRedirect(true)
+            }
           })
+          .catch(error => {
+            switch (error.response.data.code) {
+              case 11000:
+                message.error(t('errorRegMail'));
+                break;
+
+              default:
+                message.error(t('errorReg'));
+                break;
+            }
+          });
       }
     });
   };
 
   return (
+    redirect ? <Redirect to='/?registered' /> 
+    : 
     <>
       <Title> {t('register.title')} </Title>
       <Form onSubmit={onHandleSubmit} className="login-form">
@@ -78,8 +105,8 @@ const RegisterForm = ({ register, form }) => {
             rules: [{ required: false, message: 'Please Enter Your Age' }],
           })(
             <Radio.Group buttonStyle="solid">
-              <Radio.Button value={parseInt(1)}>Man</Radio.Button>
-              <Radio.Button value={parseInt(0)}>Female</Radio.Button>
+              <Radio.Button value={parseInt(1)}> Man </Radio.Button>
+              <Radio.Button value={parseInt(0)}> Female </Radio.Button>
             </Radio.Group>
           )}
         </Form.Item>
@@ -89,8 +116,8 @@ const RegisterForm = ({ register, form }) => {
             rules: [{ required: false, message: 'Please Enter Your Age' }],
           })(
             <Radio.Group buttonStyle="solid">
-              <Radio.Button value="1">Man</Radio.Button>
-              <Radio.Button value="0">Female</Radio.Button>
+              <Radio.Button value={parseInt(1)}> Man </Radio.Button>
+              <Radio.Button value={parseInt(0)}> Female </Radio.Button>
             </Radio.Group>,
           )}
         </Form.Item>

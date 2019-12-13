@@ -13,5 +13,8 @@
   "gender": "Ukr gender",
   "date": "Ukr date",
   "warning": "* Ukr warning",
-  "country": "Ukr country"
+  "country": "Ukr country",
+  "successReg": "ukr successReg",
+  "errorReg": "ukr errorReg",
+  "errorRegMail": "ukr dublicate mail"
 }

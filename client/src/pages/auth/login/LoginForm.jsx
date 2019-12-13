@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import axios from "axios";
-import { Redirect } from "react-router"; 
-import { Form, Input, Button, Checkbox, Typography } from 'antd';
+import { Redirect, withRouter } from "react-router"; 
+import {
+  Form,
+  Input,
+  Button,
+  Checkbox,
+  Typography,
+  message
+} from 'antd';
 
 import './style.css';
 
@@ -11,19 +18,21 @@ const authAxios = axios.create();
 
 
 const LoginForm = ( props ) => {
+  console.log('props', props);
+  
   const { getFieldDecorator, validateFields } = props.form;
   const { t } = useTranslation();
   const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
     authAxios.get('http://localhost:9000/auth/logout')
-      .then(function (res) {
-        console.log(res);
-      })
     localStorage.setItem('lang', JSON.stringify('Ukr'));
     localStorage.removeItem('currentUser');
     sessionStorage.removeItem('currentUser');
-  }, []);
+    if (props.history.location.search === '?registered' ) {
+      message.success(t('successReg'));
+    }
+  }, [props.history.location.search]);
 
   const onHandleSubmit = event => {
     event.preventDefault();
@@ -49,8 +58,8 @@ const LoginForm = ( props ) => {
   };
 
   return (
-    redirect ? <Redirect to='/editUser' /> : 
-    <> 
+    redirect ? <Redirect to='/editUser' /> :
+    <>
       <Title>{t('login.title')} </Title>
       <Form onSubmit={onHandleSubmit} className="login-form">
         <Form.Item>
@@ -105,4 +114,4 @@ const LoginForm = ( props ) => {
 
 const WrappedLoginForm = Form.create({ name: 'login_form' })(LoginForm);
 
-export default WrappedLoginForm;
+export default withRouter(WrappedLoginForm);

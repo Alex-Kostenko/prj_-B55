@@ -13,5 +13,8 @@
   "gender": "eng gender",
   "date": "eng date",
   "warning": "* eng warning",
-  "country": "eng country"
+  "country": "eng country",
+  "successReg": "eng successReg",
+  "errorReg": "eng errorReg",
+  "errorRegMail": "eng dublicate mail"
 }

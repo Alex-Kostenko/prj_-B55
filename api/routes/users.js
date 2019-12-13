@@ -25,7 +25,7 @@ router.post("/register", function (req, res) {
 
     // save the user
     User.createUser(newUser, function (err, user) {
-      console.log(newUser);
+      // console.log(newUser);
 
       if (err) {
         res.status(400).send(err);
@@ -44,7 +44,7 @@ router.post("/login", passport.authenticate("local"), function (req, res) {
 router.post("/editUser/:userId", function (req, res) {
   const id = req.params.userId;
   // console.log(req.body.data.imgList);
-  
+
   User.editUser(id, req.body);
   res.send(req.body);
 });
@@ -54,6 +54,18 @@ router.get('/user', function (req, res) {
   res.send(req.user);
 });
 
+// Endpoint to get allUser
+router.get('/usersList', function (req, res) {
+  User.find({}, function (err, users) {
+    var userMap = {};
+
+    users.forEach(function (user) {
+      userMap[user._id] = user;
+    });
+
+    res.send(userMap);
+  });
+});
 
 // Endpoint to logout
 router.get('/logout', function (req, res) {
