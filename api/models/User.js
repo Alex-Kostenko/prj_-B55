@@ -48,7 +48,9 @@ const UserSchema = new Schema({
     type: Array,
   },
   avatar:{
-    type: Array
+    type: String,
+    required: true,
+    default: 'https://picsum.photos/200/300'
   },
   _active:{
     type: Boolean,

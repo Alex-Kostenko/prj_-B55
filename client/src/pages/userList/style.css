@@ -1,0 +1,10 @@
+.userList__wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.userList__card {
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+}

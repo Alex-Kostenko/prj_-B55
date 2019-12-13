@@ -56,14 +56,14 @@ router.get('/user', function (req, res) {
 
 // Endpoint to get allUser
 router.get('/usersList', function (req, res) {
-  User.find({}, function (err, users) {
+  UserShema.find({}, function (err, users) {
     var userMap = {};
 
-    users.forEach(function (user) {
-      userMap[user._id] = user;
-    });
+    // users.forEach(function (user) {
+    //   userMap[user._id] = user;
+    // });
 
-    res.send(userMap);
+    res.send(users);
   });
 });
 

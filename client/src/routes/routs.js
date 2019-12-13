@@ -2,6 +2,7 @@ import HomePage from '../pages/home';
 import WrappedRegisterPage from '../pages/auth/register';
 import RenderUser from '../pages/profile/user';
 import UserInfo from '../pages/profile/editUser';
+import UserList from '../pages/userList';
 
 const routs = [
   {
@@ -24,7 +25,11 @@ const routs = [
     component: UserInfo,
     exact: true
   },
-
+  {
+    path: '/userList',
+    component: UserList,
+    exact: true
+  },
 ];
 
 export default routs;
