@@ -32,7 +32,7 @@ const LoginForm = ( props ) => {
     if (props.history.location.search === '?registered' ) {
       message.success(t('successReg'));
     }
-  }, [props.history.location.search]);
+  }, [props.history.location.search, t]);
 
   const onHandleSubmit = event => {
     event.preventDefault();

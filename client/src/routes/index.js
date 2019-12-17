@@ -19,7 +19,7 @@ const RoutesPage = () => {
     <Router>
       <Suspense fallback={<Loader />}>
         <Header />
-        <Content> 
+        <Content style={{ padding: '25px 50px' }}> 
           <Switch>
             {routs.map((rout, i)=> 
               <Route path={rout.path} key={i} exact={rout.exact}>

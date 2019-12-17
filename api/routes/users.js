@@ -40,6 +40,7 @@ router.post("/register", function (req, res) {
 router.post("/login", passport.authenticate("local"), function (req, res) {
   res.send(req.user);
 });
+
 // editUser
 router.post("/editUser/:userId", function (req, res) {
   const id = req.params.userId;
@@ -57,13 +58,23 @@ router.get('/user', function (req, res) {
 // Endpoint to get allUser
 router.get('/usersList', function (req, res) {
   UserShema.find({}, function (err, users) {
-    var userMap = {};
-
-    // users.forEach(function (user) {
-    //   userMap[user._id] = user;
-    // });
-
     res.send(users);
+  });
+});
+
+// Endpoint to get paginationUsers
+router.get('/api/:startUser/:count', function (req, res) {
+  UserShema.find({}, function (err, users) {
+    const startUser = parseInt(req.params.startUser);
+    const count = parseInt(req.params.count);
+    res.send(users.slice(startUser, startUser + count));
+  });
+});
+
+// Endpoint to get countUser
+router.get('/api/countUsers', function (req, res) {
+  UserShema.countDocuments({ }, function (err, count) {
+    res.send({count})
   });
 });
 

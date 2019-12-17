@@ -7,6 +7,29 @@ import RenderSelectLang from "../components/selectLang";
 
 const { Header } = Layout;
 
+const headerItem = [
+  {
+    title: 'Login Page',
+    rout: '/'
+  },
+  {
+    title: 'Register Page',
+    rout: '/registration'
+  },
+  {
+    title: 'User List',
+    rout: '/userList'
+  },
+  {
+    title: 'Avatar',
+    rout: '/user'
+  },
+  {
+    title: 'User Edit',
+    rout: '/editUser'
+  },
+];
+
 
 const RenderHeader = ( ) => {
   const location = useLocation().pathname;
@@ -24,26 +47,15 @@ const RenderHeader = ( ) => {
         selectedKeys={[currentLocation]}
         style={{ lineHeight: '64px' }}
       >
-        <Menu.Item key="/">
-          <Link to="/">
-            LoginPage
-          </Link>
-        </Menu.Item>
-        <Menu.Item key="/registration">
-          <Link to="/registration">
-            RegisterPage
-          </Link>
-        </Menu.Item>
-        <Menu.Item key="/user">
-          <Link to="/user">
-            User
-          </Link>
-        </Menu.Item>
-        <Menu.Item key="/editUser">
-          <Link to="/editUser">
-            UserInfo
-          </Link>
-        </Menu.Item>
+
+        {headerItem.map(item => 
+          <Menu.Item key={item.rout}>
+            <Link to={item.rout}>
+              {item.title}
+            </Link>
+          </Menu.Item>
+        )}
+
         <Menu.Item>
           <RenderSelectLang />
         </Menu.Item>
