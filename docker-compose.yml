@@ -43,6 +43,30 @@ services:
             - webappnetwork
         build: ./api
 
+    # redis:
+    #     image: 'bitnami/redis:latest'
+    #     # ports:
+    #     #     - "6379:6379"
+    #     environment:
+    #         - ALLOW_EMPTY_PASSWORD=yes
+    #     # command: redis server
+    #     networks:
+    #         - webappnetwork
+    redis:
+        image: 'redis:4.0.5-alpine'
+        restart: always
+        command: ["redis-server", "--appendonly", "yes"]
+        hostname: redis
+        networks:
+            - webappnetwork
+        environment:
+            - ALLOW_EMPTY_PASSWORD=yes
+        volumes:
+            - redis-data:/data
+
 networks:
     webappnetwork:
         driver: bridge
+
+volumes:
+    redis-data:

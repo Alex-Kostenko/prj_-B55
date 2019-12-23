@@ -6,7 +6,9 @@ var usersRouter = require("./routes/users");
 var testAPIRouter = require("./routes/testAPI");
 var testDBRouter = require("./routes/testDB");
 var userLogin = require("./routes/login");
-
+const redis = require('redis').createClient({
+  host: 'redis'
+});
 const express = require("express");
 const app = express();
 const users = require("./routes/users");
@@ -24,11 +26,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
-app.use("/testAPI", testAPIRouter);
-app.use("/testDB", testDBRouter);
-app.use("/login", userLogin);
 // Passport init
 app.use(passport.initialize());
 app.use(passport.session());
@@ -79,6 +76,28 @@ app.set("view engine", "jade");
 app.use(express.urlencoded({ extended: true }));
 // app.use(express.static(path));
 app.use("/auth", users);
+app.use("/", indexRouter);
+app.use("/users", usersRouter);
+app.use("/testAPI", testAPIRouter);
+app.use("/testDB", testDBRouter);
+app.use("/login", userLogin);
+
+// app.use(function (req, res, next) {
+//   var ua = req.headers['user-agent'];
+//   redis.zadd('online', Date.now(), ua, next);
+// });
+
+// // fetch the users online in the last minute
+
+// app.use(function (req, res, next) {
+//   var min = 60 * 1000;
+//   var ago = Date.now() - min;
+//   redis.zrevrangebyscore('online', '+inf', ago, function (err, users) {
+//     if (err) return next(err);
+//     req.online = users;
+//     next();
+//   });
+// });
 
 // BodyParser Middleware
 app.use(bodyParser.json());

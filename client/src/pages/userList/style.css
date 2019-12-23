@@ -19,3 +19,10 @@
   margin: 12px;
   text-align: center;
 }
+
+.userList {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: inherit;
+}
