@@ -6,7 +6,7 @@ const User = require("../controllers/users");
 const jwt = require("jsonwebtoken");
 const SECRET = process.env.SECRET;
 var passport = require("passport");
-
+const authenticate = passport.authenticate('local');
 // register
 router.post("/register", function (req, res) {
   const checkReq = !req.body.username || !req.body.password || !req.body.email || !req.body.age
@@ -36,8 +36,9 @@ router.post("/register", function (req, res) {
   }
 });
 
+
 // login
-router.post("/login", passport.authenticate("local"), function (req, res) {
+router.post("/login", authenticate, function (req, res) {
   res.send(req.user);
 });
 
@@ -79,7 +80,8 @@ router.get('/api/countUsers', function (req, res) {
 });
 
 // Endpoint to logout
-router.get('/logout', function (req, res) {
+router.get('/logout',function (req, res) {
+  console.log("/editUser/:userId", req.isAuthenticated());
   req.logout();
   res.send(null)
 });

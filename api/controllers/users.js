@@ -33,6 +33,22 @@ module.exports.getUserById = function(id, callback){
   User.findById(id, callback);
 };
 
+module.exports.login = function (req, res, next) {
+  passport.authenticate('local',
+    function (err, user, info) {
+      return err
+        ? next(err)
+        : user
+          ? req.logIn(user, function (err) {
+            return err
+              ? next(err)
+              : res.redirect('/private');
+          })
+          : res.redirect('/');
+    }
+  )(req, res, next);
+};
+
 module.exports.comparePassword = function(candidatePassword, hash, callback){
   bcrypt.compare(candidatePassword, hash, function(err, isMatch) {
     if (err) {
