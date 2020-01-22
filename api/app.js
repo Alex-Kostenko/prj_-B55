@@ -6,9 +6,10 @@ var usersRouter = require("./routes/users");
 var testAPIRouter = require("./routes/testAPI");
 var testDBRouter = require("./routes/testDB");
 var userLogin = require("./routes/login");
-const redis = require('redis').createClient({
-  host: 'redis'
-});
+var redis = require('redis');
+console.log(redis.createClient());
+// var db = redis.createClient();
+
 const express = require("express");
 const app = express();
 const users = require("./routes/users");
@@ -87,7 +88,7 @@ app.use("/login", userLogin);
 //   redis.zadd('online', Date.now(), ua, next);
 // });
 
-// // fetch the users online in the last minute
+// // // fetch the users online in the last minute
 
 // app.use(function (req, res, next) {
 //   var min = 60 * 1000;
@@ -98,6 +99,27 @@ app.use("/login", userLogin);
 //     next();
 //   });
 // });
+// app.use(function (req, res, next) {
+//   var ua = req.headers['user-agent'];
+//   db.zadd('online', Date.now(), ua, next);
+// });
+
+// // fetch the users online in the last minute
+
+// app.use(function (req, res, next) {
+//   var min = 60 * 1000;
+//   var ago = Date.now() - min;
+//   db.zrevrangebyscore('online', '+inf', ago, function (err, users) {
+//     if (err) return next(err);
+//     req.online = users;
+//     next();
+//   });
+// });
+
+// app.get('/userCountUA', function (req, res) {
+//   res.send(req.online.length + ' users online');
+// });
+
 
 // BodyParser Middleware
 app.use(bodyParser.json());

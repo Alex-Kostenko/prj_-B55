@@ -6,7 +6,9 @@ const User = require("../controllers/users");
 const jwt = require("jsonwebtoken");
 const SECRET = process.env.SECRET;
 var passport = require("passport");
-const authenticate = passport.authenticate('local');
+const authenticate = passport.authenticate('local', {
+  session: true 
+});
 // register
 router.post("/register", function (req, res) {
   const checkReq = !req.body.username || !req.body.password || !req.body.email || !req.body.age

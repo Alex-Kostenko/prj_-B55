@@ -24,7 +24,7 @@ mongoose
     console.log("MongoDB is connected");
   })
   .catch(function (err) {
-    console.log(err);
+    console.log('error', err);
   });
 
 mongoose.connection.on("error", error => {
